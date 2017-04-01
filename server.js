@@ -1,27 +1,42 @@
 const express = require('express');
+const mongodb = require('mongodb');
 const port = process.env.PORT || 3000;
 const app = express();
 
-app.use("/:url", ( req, res, next ) => {
-    console.log( req.originalUrl , "===> Params")
+// connect to mLab database..
+const MongoClient = mongodb.MongoClient;
+const url = process.env.MONGOLAB_URI;
 
-   const url_encoded = encodeURIComponent(req.params.url) + "/" + req.url;
-   //req.protocol = "";
-   req.params.url = url_encoded;
-
-   console.log( req.params.url, "===> URL is encoded! ! !");
-   next();
-});
-
-app.get( "/:url" , ( req, res, next ) => {
-  console.log( req.params , "===> GET RECIEVED");
-
-  /*if ( req.url.indexOf("http/:") !== -1 || req.url.indexOf("https/:") !== -1 ) {
-    res.write("Invalid URL");
+MongoClient.connect( url, ( err, db ) => {
+  if ( err ) {
+    console.log('Unable to connect to the mongoDB server. Error:', err);
+  } else {
+    console.log( "connection established to ", url );
   }
-  //if( url.indexOf( ".com" ) !== -1 ) {};
-  */
-  res.end();
+  db.close();
+})
+
+// request handlers.
+
+app.use("/:url", ( req, res, next ) => {
+    // search for proper parameters in the request object
+    let parse = require('url-parse'),
+        url = parse(req.originalUrl.slice(1), parse );
+    let short_url = "https://" + req.headers.host;
+
+    let randomInt = () => { return (Math.floor(Math.random() * (20 - 1)  + 1)).toString()};
+
+    //console.log( url );
+
+   url.set('href', randomInt() );
+
+
+   res.write( JSON.stringify({
+     'original_url': url,
+     'short_url': short_url
+   }))
+
+   res.end();
 }).listen( port , () => {
    console.log( "listening on port " + port )
 });
