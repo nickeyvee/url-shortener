@@ -1,0 +1,6 @@
+.container {
+  width: 100%;
+  background: blue; }
+  .container #url-field {
+    padding: 50%;
+    width: 100%; }

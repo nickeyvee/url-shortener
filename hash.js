@@ -11,6 +11,7 @@ module.exports = {
       shortUrl.push( char.charAt( randomIndex() ));
       i--;
     }
-    short_url = shortUrl.join("");
+    return short_url = shortUrl.join("");
+    console.log( "hash generated" );
   }
 }
