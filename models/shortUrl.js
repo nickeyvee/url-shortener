@@ -7,6 +7,7 @@ const urlSchema = new Schema({
     shortened: String
 }, { timestamps: true });
 
-const modelClass = mongoose.model("url-pairs", urlSchema );
+const modelClass = mongoose.model("urlPairs", urlSchema );
+                        // model( "the collection", "the Schema" );
 
-module.exports.modelClass;
+module.exports = modelClass;
