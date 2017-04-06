@@ -23,5 +23,8 @@
     "jquery": "^3.2.1",
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.2"
+  },
+  "devDependencies": {
+    "gulp-refresh": "^1.1.0"
   }
 }

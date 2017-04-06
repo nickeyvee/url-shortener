@@ -1,13 +1,44 @@
+body {
+    margin: 0;
+    background: #121314;
+    font-family: open sans;
 .title {
-    font-family: sans-serif;
+    color: white;
     text-align: center;
-    padding: 10px;
-    margin: auto;
-}
-
-.container {
-    width: 250px;
-    margin-top: 50px;
     padding: 20px;
     margin: auto;
 }
+.container {
+    width: 410px;
+    margin-top: 50px;
+    border-radius: 8px;
+    background: #1C1C1F;
+    padding: 15px;
+    margin: auto;
+    .fa-link {
+        margin-right: 5px;
+        padding: 5px;
+        color: white;
+    }
+    #url-field {
+        font-family: space mono;
+        padding: 5px;
+        height: 27px;
+        width: 280px;
+    }
+    #submit-form {
+        font-size: 10px;
+        color: white;
+        margin-left: 5px;
+        background-color: #648F00;
+        font-family: open sans;
+        border-radius: 4px;
+        outline: none;
+        border: none;
+        width: 70px;
+        padding: 8px;
+        &:hover {
+            background: #7db300;
+        }
+    }
+}}
