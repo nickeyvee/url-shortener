@@ -4,15 +4,19 @@ body {
     margin: 0;
     div{
         background: #1C1C1F;
-        width: 400px;
+        width: 450px;
         border-radius: 8px;
         padding: 10px;
         margin: auto;
         p {
             color: white;
-            text-align: center;
+            margin-left: 15px;
             font-family: space mono;
             margin: center;
+            a{
+                color: #7db300;
+                text-decoration: none;
+            }
         }
     }
 }
