@@ -1,13 +1,25 @@
 // add an event listener to the shorten button for when the user clicks it
 $(document).ready( () => {
+  let params;
+  const Url = "^[A-Za-z]+://[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=]+$";
+  const redirect = () => { location.href += "new/" + params };
 
-//console.log( location.href );
+  const validateUrl = arg => {
+    if( Url.test(arg)) {
+      redirect();
+    } else {
+      
+    }
+  };
 
 $('#submit-form').on('click', () => {
 
-  const params = $('#url-field').val();
-  const redirect = () => { location.href += "new/" + params };
+  params = $('#url-field').val();
+
+
   
+  
+  console.log( params );
   $.ajax({
     url: location.href,
     type: 'GET',
