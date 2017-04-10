@@ -8,11 +8,13 @@
 </head>
 
 <body>
-  <p class="title" >URL Shortener Microservice</p>
+  <p class="title" >Super-simple Url Shortener!</p>
   <div class="container">
     <div class="fa fa-link" aria-hidden="true"></div>
-    <input id="url-field" placeholder="www.example.com"></input>
+    <input id="url-field" placeholder="https://example.com"></input>
     <button id="submit-form">SUBMIT</button>
   </div>
-  <div id="user-msg"></div>
+  <div id="user-msg" style="display:none">
+    <p>Invalid Url. Make sure you follow the 'https://example.com' format.</p>
+  </div>
 </body>

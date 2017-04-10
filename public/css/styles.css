@@ -36,3 +36,10 @@ body {
       padding: 8px; }
       body .container #submit-form:hover {
         background: #7db300; }
+  body #user-msg {
+    margin: auto;
+    width: 300px;
+    color: #ff6666;
+    font-family: space mono;
+    font-size: 12px;
+    text-align: center; }

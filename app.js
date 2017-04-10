@@ -3,9 +3,10 @@ const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const mongoose = require('mongoose');
-const mongoUrl = require("./mongolab").key;
+const mongoUrl = process.env.MONGOLAB_URI;
 const port = process.env.PORT || 3000;
 const hash = require('./hash');
+const appUrl = process.env.APP_URL;
 const shortUrl = require("./models/shortUrl");
 const pug = require("pug");
 let shortened, original;
@@ -58,7 +59,7 @@ app.get("/new/:original(*)", (req, res) => {
         if (err) return res.send("Error Saving to database")
     })
     res.render("output", {
-        original:"http://" + original, 
+        original: original, 
         shortened: "http://" + req.headers.host + "/" + shortened
     });
     //res.json(data);
