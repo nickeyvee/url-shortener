@@ -39,7 +39,12 @@ body {
   body #user-msg {
     margin: auto;
     width: 300px;
-    color: #ff6666;
+    background: #ff6666;
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 3px;
+    opacity: 0.8;
     font-family: space mono;
     font-size: 12px;
-    text-align: center; }
+    text-align: center;
+    transition: 0.5s; }
