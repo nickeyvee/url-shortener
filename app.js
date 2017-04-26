@@ -3,15 +3,16 @@ const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const mongoose = require('mongoose');
-const mongoUrl = process.env.MONGODB_URI;
+const mongoUrl = process.env.MONGODB_URI || require("./mlab").key;
 const port = process.env.PORT || 3000;
-const hash = require('./hash');
+const random = require('./random');
 const appUrl = process.env.APP_URL;
 const shortUrl = require("./models/shortUrl");
 const pug = require("pug");
 let shortened, original;
+
 const createShortUrl = () => {
-    shortened = hash.shorten()
+    shortened = random.shorten()
 };
 
 const app = express();
@@ -36,18 +37,12 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/views"));
 app.use(express.static(__dirname + "/public"));
 
-app.get("/", (req, res) => {
-    console.log("1st request recieved")
-    res.send("Request recieved");
-    res.end();
-});
-
 app.get("/new/:original(*)", (req, res) => {
     console.log("2nd request Recieved! ! !");
     original = req.params.original; // same as const shorten = req.params.shorten;
     // gerneate the random 4-char long base38 url
     createShortUrl();
-    console.log(req.headers);
+    //console.log(req.headers);
 
     // create new item using Schema in shortUrls.js
     const data = new shortUrl({

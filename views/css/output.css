@@ -8,6 +8,11 @@ body {
     border-radius: 8px;
     padding: 10px;
     margin: auto; }
+    body div input {
+      width: 250px;
+      font-family: inherit;
+      border: none;
+      color: #7db300; }
     body div p {
       color: white;
       margin-left: 15px;
