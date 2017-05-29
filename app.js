@@ -1,19 +1,23 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const pug = require("pug");
+
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
+
 const mongoose = require('mongoose');
-const mongoUrl = process.env.MONGODB_URI || require("./mlab").key;
+const mongoUrl = process.env.MONGODB_URI || require("./config/mlab").key;
+
 const port = process.env.PORT || 3000;
-const random = require('./random');
+const urlService= require('./url-shortener/urlShortener');
 const appUrl = process.env.APP_URL;
 const shortUrl = require("./models/shortUrl");
-const pug = require("pug");
-let shortened, original;
 
-const createShortUrl = () => {
-    shortened = random.shorten()
-};
+
+let shortened, 
+original;
+
+//const createShortUrl = () => { shortened = urlService.shorten() };
 
 const app = express();
 
@@ -26,7 +30,7 @@ mongoose.connect(mongoUrl, (err, db) => {
         console.log("connected to mongoDB @ " + mongoUrl);
 
         app.listen(port, () => {
-            console.log("app listening on port");
+            console.log("app listening on port", port);
         });
     }
 })
@@ -37,33 +41,53 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/views"));
 app.use(express.static(__dirname + "/public"));
 
-app.get("/new/:original(*)", (req, res) => {
-    console.log("2nd request Recieved! ! !");
+// app.get("/", (req, res) => {
+//     console.log("GET Recieved!");
+// });
+
+app.get("/valid/:original(*)", (req, res) => {
     original = req.params.original; // same as const shorten = req.params.shorten;
     // gerneate the random 4-char long base38 url
-    createShortUrl();
-    //console.log(req.headers);
+    console.log("GET recieved!", original)
 
-    // create new item using Schema in shortUrls.js
-    const data = new shortUrl({
-        "original": original,
-        "shortened": shortened
-    });
-    // save to mongoDB
-    data.save((err) => {
-        if (err) return res.send("Error Saving to database")
-    })
+    const Valid = urlService.Validate( original );
+    console.log( "url is:" + Valid );
+
+    if ( !Valid ) {
+        console.log( "response ended");
+        return res.end();
+    } else {
+        shortened = urlService.shorten();
+
+        // create new item using Schema in shortUrls.js
+        const data = new shortUrl({
+            "original": original,
+            "shortened": shortened
+        });
+        // save to mongoDB
+        data.save((err) => {
+            if (err) return res.send("Error Saving to database")
+        })
+    }
+    res.set('Content-Type', 'application/json');
+    res.send(JSON.stringify({ "valid": Valid }));
+    res.end();
+});
+
+
+app.get("/new/", (req, res) => {
     res.render("output", {
         original: original, 
         shortened: "http://" + req.headers.host + "/" + shortened
     });
-    //res.json(data);
-    res.end();
-});
+})
 
-// search database and redirct if match is found
+
+//search database and redirct if match is found
 app.get("/:newUrl", (req, res) => {
     const newUrl = req.params.newUrl;
+
+    console.log("short url recieved!");
 
     if (newUrl !== "favicon.ico") {
 
@@ -79,6 +103,3 @@ app.get("/:newUrl", (req, res) => {
         });
     };
 })
-
-
-
