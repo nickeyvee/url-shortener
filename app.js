@@ -35,6 +35,13 @@ mongoose.connect(mongoUrl, (err, db) => {
     }
 })
 
+app.all('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  console.log( "allow cross-origin-request headers set")
+  next();
+ });
+
 // tell express where to find files and use middleware.
 app.set('view engine', 'pug');
 app.use(bodyParser.json());
@@ -42,7 +49,7 @@ app.use(express.static(__dirname + "/views"));
 app.use(express.static(__dirname + "/public"));
 
 
-app.get("/valid/:original(*)", (req, res) => {
+app.get("/valid/:original(*)", (req, res, next) => {
     original = req.params.original; // same as const shorten = req.params.shorten;
     // gerneate the random 4-char long base38 url
     console.log("GET recieved!", original)
@@ -70,7 +77,7 @@ app.get("/valid/:original(*)", (req, res) => {
 });
 
 
-app.get("/new/", (req, res) => {
+app.get("/new/", (req, res, next) => {
     res.render("output", {
         original: original, 
         shortened: "http://" + req.headers.host + "/" + shortened
@@ -79,7 +86,7 @@ app.get("/new/", (req, res) => {
 
 
 //search database and redirct if match is found
-app.get("/:newUrl", (req, res) => {
+app.get("/:newUrl", (req, res, next) => {
     const newUrl = req.params.newUrl;
 
     console.log("short url recieved!");

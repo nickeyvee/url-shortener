@@ -51,7 +51,10 @@ document.addEventListener( "DOMContentLoaded", () => {
     }
 
     http.open("GET", UrlParam, true );
+    http.withCredentials = true;
+    http.setRequestHeader('Content-Type', 'text/plain');
     http.send(null);
+    
     console.log( UrlParam );
     }
 })

@@ -23,6 +23,7 @@
     "jquery": "^3.2.1",
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.2",
+    "font-awesome": "^4.7.0",
     "pug": "^2.0.0-beta11"
   },
   "devDependencies": {
