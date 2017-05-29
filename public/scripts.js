@@ -9,11 +9,11 @@ document.addEventListener( "DOMContentLoaded", () => {
     let UrlParam = "",
     msgLength = 0;
 
-    // setInterval(() => {
-    //     if (Url.val().length !== msgLength) {
-    //        MsgBox.hide();
-    //     }
-    // }, 100);
+    setInterval(() => {
+        if (Url.value.length !== msgLength) {
+           MsgBox.style.display = "none";
+        }
+    }, 150);
 
     Button.addEventListener('click', function() {
         UrlParam = `/valid/${Url.value}`.toString();
@@ -38,7 +38,11 @@ document.addEventListener( "DOMContentLoaded", () => {
                 console.log( "VALID URL");
                 Redirect();
             } else {
-
+                // display error message here.
+                MsgBox.style.display = "block";
+                msgLength = Url.value.length;
+                // console.log(`Url length ${ Url.value.length }`);
+                // console.log(`msgLength ${ msgLength }`)
             }
 
         } else if ( http.status == 404 ) {

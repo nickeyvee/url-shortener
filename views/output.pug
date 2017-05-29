@@ -1,9 +1,13 @@
 doctype html
 html(lang="en")
-  head
-    link(href="https://fonts.googleapis.com/css?family=Cutive+Mono|Open+Sans|Space+Mono", rel="stylesheet")
-    link(href="/css/output.css",rel="stylesheet", type="text/css")
-  body
-    div.data
-      p original: #[a(href=original) #{original}]
-      p shortened: #[input(type="text" value=shortened)]
+    head
+      link(href="https://fonts.googleapis.com/css?family=Cutive+Mono|Open+Sans|Space+Mono", rel="stylesheet")
+      link(href="/css/output.css",rel="stylesheet", type="text/css")  
+    body
+      div.data
+        p original: #[a(href=original) #{original}]
+        p shortened: #[input(type="text" value=shortened)] #[button#btn-back New URL]
+
+script.
+    const backBtn = document.getElementById('btn-back');
+        backBtn.addEventListener('click', () => location.href = location.origin );

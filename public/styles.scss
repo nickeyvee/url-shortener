@@ -22,7 +22,10 @@ body {
     }
     #url-field {
         font-family: space mono;
-        padding: 5px;
+        padding: 8px;
+        border: none;
+        outline: none;
+        border-radius: 3px;
         height: 27px;
         width: 280px;
     }

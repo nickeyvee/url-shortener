@@ -4,20 +4,38 @@ body {
   margin: 0; }
   body div {
     background: #1C1C1F;
-    width: 525px;
+    width: 625px;
     border-radius: 8px;
     padding: 10px;
     margin: auto; }
     body div input {
-      width: 380px;
+      min-width: 350px;
       font-family: inherit;
+      font-size: 12px;
       border: none;
+      padding: 5px;
+      outline: none;
+      border-radius: 3px;
       color: #7db300; }
     body div p {
       color: white;
       margin-left: 15px;
-      font-family: space mono;
-      margin: center; }
+      font-family: space mono; }
       body div p a {
         color: #7db300;
         text-decoration: none; }
+  body #btn-back {
+    font-size: 10px;
+    color: white;
+    margin: auto;
+    display: inline-block;
+    background-color: #648F00;
+    font-family: open sans;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    width: 120px;
+    padding: 8px;
+    text-align: center; }
+    body #btn-back:hover {
+      background: #7db300; }

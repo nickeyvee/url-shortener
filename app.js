@@ -41,9 +41,6 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/views"));
 app.use(express.static(__dirname + "/public"));
 
-// app.get("/", (req, res) => {
-//     console.log("GET Recieved!");
-// });
 
 app.get("/valid/:original(*)", (req, res) => {
     original = req.params.original; // same as const shorten = req.params.shorten;
@@ -53,10 +50,8 @@ app.get("/valid/:original(*)", (req, res) => {
     const Valid = urlService.Validate( original );
     console.log( "url is:" + Valid );
 
-    if ( !Valid ) {
-        console.log( "response ended");
-        return res.end();
-    } else {
+    if ( Valid ) {
+
         shortened = urlService.shorten();
 
         // create new item using Schema in shortUrls.js
