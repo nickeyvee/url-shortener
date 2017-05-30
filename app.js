@@ -17,7 +17,6 @@ const shortUrl = require("./models/shortUrl");
 let shortened, 
 original;
 
-//const createShortUrl = () => { shortened = urlService.shorten() };
 
 const app = express();
 
@@ -38,7 +37,7 @@ mongoose.connect(mongoUrl, (err, db) => {
 app.all('/', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  console.log( "allow cross-origin-request headers set")
+  console.log( "allow cross-origin-request headers set");
   next();
  });
 

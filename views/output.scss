@@ -12,7 +12,7 @@ body {
         padding: 10px;
         margin: auto;
         input {
-            min-width: 350px;
+            min-width: 365px;
             font-family: inherit;
             font-size: 12px;
             border: none;
@@ -32,7 +32,7 @@ body {
         }
     }
     #btn-back {
-        font-size: 10px;
+        font-size: 13px;
         color: white;
         margin: auto;
         display: inline-block;
@@ -41,9 +41,12 @@ body {
         border-radius: 4px;
         outline: none;
         border: none;
-        width: 120px;
-        padding: 8px;
+        width: 100px;
+        padding: 6px;
         text-align: center;
+        i.fa {
+            font-size: inherit;
+        }
         &:hover {
             background: #7db300;
         }
