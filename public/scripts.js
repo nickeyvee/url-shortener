@@ -1,62 +1,47 @@
-document.addEventListener( "DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    const Button = document.getElementById('submit-form');
-    const Url = document.getElementById('url-field');
-    const MsgBox = document.getElementById("user-msg");
+   const Button = document.getElementById('submit-form');
+   const Url = document.getElementById('url-field');
+   const MsgBox = document.getElementById("user-msg");
 
-    const Redirect = () => location.href += `new/`;
+   const Redirect = () => location.href += `new/`;
 
-    let UrlParam = "",
-    msgLength = 0;
+   let UrlParam = "",
+      msgLength = 0;
 
-    setInterval(() => {
-        if (Url.value.length !== msgLength) {
-           MsgBox.style.display = "none";
-        }
-    }, 150);
+   setInterval(() => {
+      if (Url.value.length !== msgLength) {
+         MsgBox.style.display = "none";
+      }
+   }, 150);
 
-    Button.addEventListener('click', function() {
-        UrlParam = `/valid/${Url.value}`.toString();
-        console.log( UrlParam );
-        callback();
-    });
+   Button.addEventListener('click', function () {
+      UrlParam = `/valid/${Url.value}`.toString();
+      callback();
+   });
 
-
-    const callback = () => {
-
-    const http = new XMLHttpRequest();
-
-    http.onreadystatechange = () => {
-        if( http.readyState == 4 && http.status == 200 ) {
-            console.log("response recieved" );
-            console.log( http );
-            
-            let data = JSON.parse( http.response );
-
-            console.log( data )
-            if( data.valid ) {
-                console.log( "VALID URL");
-                Redirect();
+   const callback = () => {
+      const http = new XMLHttpRequest();
+      http.onreadystatechange = () => {
+         if (http.readyState == 4 && http.status == 200) {
+            let data = JSON.parse(http.response);
+            if (data.valid) {
+               // console.log("VALID URL");
+               Redirect();
             } else {
-                // display error message here.
-                MsgBox.style.display = "block";
-                msgLength = Url.value.length;
-                // console.log(`Url length ${ Url.value.length }`);
-                // console.log(`msgLength ${ msgLength }`)
+               // display error message here.
+               MsgBox.style.display = "block";
+               msgLength = Url.value.length;
             }
-
-        } else if ( http.status == 404 ) {
+         } else if (http.status == 404) {
             console.log("error (not found)");
-        }
-    }
-
-    http.open("GET", UrlParam, true );
-    http.withCredentials = true;
-    http.setRequestHeader('Content-Type', 'text/plain');
-    http.send(null);
-    
-    console.log( UrlParam );
-    }
+         }
+      }
+      http.open("GET", UrlParam, true);
+      http.withCredentials = true;
+      http.setRequestHeader('Content-Type', 'text/plain');
+      http.send(null);
+   }
 })
 
 /*

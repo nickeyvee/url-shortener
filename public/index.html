@@ -1,22 +1,40 @@
 <!--DOCTYPE html-->
+
 <head>
-  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
-  <link href="https://fonts.googleapis.com/css?family=Cutive+Mono|Open+Sans|Space+Mono" rel="stylesheet">
-  <link href="/css/styles.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+   <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Cutive+Mono|Open+Sans|Space+Mono" rel="stylesheet">
+   <link href="/css/styles.css" rel="stylesheet" type="text/css">
+   <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
 </head>
 
 <html>
-  <body>
-    <p class="title" >Super-simple Url Shortener!</p>
-    <div class="container">
-      <div class="fa fa-link" aria-hidden="true"></div>
-      <input id="url-field" placeholder="https://example.com"></input>
-      <button id="submit-form">SUBMIT</button>
-    </div>
-    <div id="user-msg" style="display:none">
+
+<body>
+   <div class="container">
+      <div class="row">
+         <p class="title">Super-simple Url Shortener!</p>
+      </div>
+      <div class="row">
+         <div class="card-input col-xs-2 col-sm-1 col-md-1">
+            <div class="fa fa-link" aria-hidden="true"></div>
+         </div>
+         <div class="card-input col-xs-10 col-sm-8 col-md-8">
+            <input id="url-field" placeholder="https://example.com"></input>
+         </div>
+         <div class="card-input col-xs-12 col-sm-3 col-md-3">
+            <button id="submit-form">SUBMIT</button>
+         </div>
+      </div>
+   </div>
+   <div id="user-msg" style="display:none">
       <p>Invalid Url. Make sure you follow the 'https://example.com' format.</p>
-    </div>
-    <script type="text/javascript" src="scripts.js"></script>
-  </body>
+   </div>
+   <script
+   src="https://code.jquery.com/jquery-3.2.1.min.js"
+   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+   crossorigin="anonymous"></script>
+   <script type="text/javascript" src="scripts.js"></script>
+</body>
+
 </html>
